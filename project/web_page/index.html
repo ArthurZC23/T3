@@ -12,19 +12,7 @@
     <p> Select a point in the SF map and the radius of the safety
       zone you want to generate.</p>
     <div id="map">My map will go here</div>
-    <script>
-    function myMap() {
-    var mapOptions = {
-        center: new google.maps.LatLng(37.773972,-122.431297),
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=
-AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
-
-
+    <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
   </body>
 </html>

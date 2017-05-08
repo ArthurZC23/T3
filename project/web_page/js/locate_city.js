@@ -1,12 +1,9 @@
-function searchResult(cityname) {
-  var cities = {
-    san_franscisco: {
-      lat: 37.773972,
-      long: -122.431297
-    }
-  };
-  var coords = cities[cityname];
-  var map = new GMap2(document.getElementById("map"));
-  map.setCenter(new GLatLng(coords.lat, coords.long), 13);
-  map.setUIToDefault();
+
+function myMap() {
+  var mapOptions = {
+    center: new google.maps.LatLng(37.773972,-122.431297),
+    zoom: 12,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
