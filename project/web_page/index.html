@@ -5,14 +5,40 @@
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
     <link rel="stylesheet" href="css/style.css"></link>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type=text/javascript src="js/locate_city.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#slider" ).slider({
+        min: 0,
+        max: 10,
+        step: 1,
+        value: 1,
+        animate:"slow",
+        orientation:"horizontal"
+      });
+    } );
+  </script>
   </head>
   <body>
     <h1>Safety zone</h1>
     <p> Select a point in the SF map and the radius of the safety
       zone you want to generate.</p>
-    <div id="map">My map will go here</div>
-    <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
-    AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
+    <div id="map">
+      <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
+      AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
+    </div>
+    <div>
+      <p>
+        Choose safety radius:
+      </p>
+    </div>
+    <div id="slider"</div>
+    <script>
+    var value = $( "#slider" ).slider(value" );
+    alert(value)
+ </script>
   </body>
 </html>
