@@ -7,7 +7,7 @@ function myMap() {
   var latLng = new google.maps.LatLng(sanFrancisco)
   var mapOptions = {
     center: latLng,
-    zoom: 13,
+    zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
 

@@ -6,11 +6,38 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
     <link rel="stylesheet" href="css/style.css"></link>
     <script type=text/javascript src="js/initialization.js"></script>
-  </head>
-  <body>
+</head>
+<body>
+    <div>
+      <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#safetyZone">Safety Zone</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#author">Author</a></li>
+      </ul>
+    </div>
+
+    <div id="home">
+    <h1>
+      Welcome to Safety Zone T3
+    </h1>
+    <p>
+      In the final task for the discipline IA369, I build an intercative
+      visualization for inspecting the safety of the city of San Francisco.
+      The application allows the you to select a point in the map (please
+      choose a point whitin San Francisco) and check if your surrounding
+      is safe.
+    </p>
+    </div>
+
+    <div id=safetyZone>
     <h1>Safety zone</h1>
-    <p> Select a point in the SF map and the radius of the safety
-      zone you want to generate.</p>
+    <h2>How to use it</h2>
+    <p>
+    Select a point in SF by clicking on the map. Set the radius of the safety
+    zone with the slider. Use the button to restore the map into the default
+    view</li>
+    </p>
     <div id="map">
       <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
       AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
@@ -21,10 +48,32 @@
       </p>
     </div>
     <div>
-      <input type="range" id="radiusBar" value="1" min ="1" max="10">
-    <div>
+      <input type="range" id="radiusBar" value="1" min ="1" max="5">
+    </div>
+    </div>
     <script type=text/javascript src=js/slider.js></script>
-    <script>
-    </script>
+
+    <div id="about">
+      <h1>
+        About
+      </h1>
+      <p>This interactive visualization is part of the <i>Walking Safe</i>
+        capstone project of the discipline IA369 at Unicamp. The task
+        is a proof of concept of one of the modules that may be
+        presented in the capstone.
+      </p>
+    </div>
+    <div id="author">
+      <h1>Author</h1>
+      <dl>
+      <dt>Name:</dt>
+      <dd>Arthur Zanatta da Costa</dd>
+      <dt>RA:</dt>
+      <dd>116194</dd>
+      <dt>Contact:</dt>
+      <dd>arthurzc23@gmail.com</dd>
+    </dl>
+    </div>
+
   </body>
 </html>
