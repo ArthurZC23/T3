@@ -4,12 +4,12 @@ var sanFrancisco = {lat: 37.773972, lng: -122.431297};
 
 function myMap() {
 
-  var latLng = new google.maps.LatLng(sanFrancisco)
+  var latLng = new google.maps.LatLng(sanFrancisco);
   var mapOptions = {
     center: latLng,
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
+  };
 
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
   var marker = new google.maps.Marker({
@@ -31,6 +31,14 @@ fillColor: '#FF0000',
 fillOpacity: 0.35,
 map: map,
 center: latLng,
-radius: 1 * 1000
+radius: 1 * 1000 //Radius is in Km
 });
+
+google.maps.event.addListener(map, 'click', function(event) {
+    console.log(event.latLng);
+    safetyCircle.set('center', event.latLng);
+    marker.set('position', event.latLng);
+
+});
+
 }
