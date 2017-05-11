@@ -6,6 +6,10 @@ for (var i=0; i<crimeLatitudes.length; i++) {
 
   crimeLocations[i] = [crimeLatitudes[i], crimeLongitudes[i]]
 }
+var dangerAudio = new Audio('http://www.fromtexttospeech.com/output/0389577001494548889/23967181.mp3');
+var carefulAudio = new Audio('http://www.fromtexttospeech.com/output/0610628001494549121/23967275.mp3');
+var safeAudio = new Audio('http://www.fromtexttospeech.com/output/0900389001494549030/23967246.mp3');
+
 
 function myMap() {
 
@@ -66,12 +70,15 @@ function style_circle(dangerLevel){
 
   if (dangerLevel <= 1000){
     safetyCircle.set('fillColor', '#00FF00')
+    safeAudio.play()
   }
   else if (dangerLevel >= 5000){
     safetyCircle.set('fillColor', '#FF0000')
+    dangerAudio.play()
   }
   else{
     safetyCircle.set('fillColor', '#FFFF00')
+    carefulAudio.play()
   }
 }
 
