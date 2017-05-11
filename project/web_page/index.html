@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>T3 assignment of IA 369</title>
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
-    <link rel="stylesheet" href="css/style.css"></link>
-    <script type=text/javascript src="js/initialization.js"></script>
+  <title>Safety Zone</title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
+  <link rel="stylesheet" href="css/style.css"></link>
+  <script type=text/javascript src="js/crime_latitude.js"></script>
+  <script type=text/javascript src="js/crime_longitude.js"></script>
+  <script type=text/javascript src="js/initialization.js"></script>
 </head>
 <body>
-    <div>
-      <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#safetyZone">Safety Zone</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#author">Author</a></li>
-      </ul>
-    </div>
+  <div>
+    <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#safetyZone">Safety Zone</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#author">Author</a></li>
+    </ul>
+  </div>
+  <div id="home">
+  <h1>
+    Welcome to Safety Zone T3
+  </h1>
+  <p>
+    In the final task for the discipline IA369, I build an intercative
+    visualization for inspecting the safety of the city of San Francisco.
+    The application allows the you to select a point in the map (please
+    choose a point whitin San Francisco) and check if your surrounding
+    is safe.
+  </p>
+  </div>
 
-    <div id="home">
-    <h1>
-      Welcome to Safety Zone T3
-    </h1>
-    <p>
-      In the final task for the discipline IA369, I build an intercative
-      visualization for inspecting the safety of the city of San Francisco.
-      The application allows the you to select a point in the map (please
-      choose a point whitin San Francisco) and check if your surrounding
-      is safe.
-    </p>
-    </div>
-
-    <div id=safetyZone>
+  <div id=safetyZone>
     <h1>Safety zone</h1>
     <h2>How to use it</h2>
     <p>
@@ -41,34 +42,33 @@
     <p>Rendering bug: If your browser is rendering white stripes inside
       the circle, press 'Ctrl' + '0'.
     </p>
-    <div id="map">
-      <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
-      AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
-    </div>
-    <div>
-      <p>
-        Choose safety radius: <span id = "radiusValue">1</span>
-      </p>
-    </div>
-    <div>
-      <input type="range" id="radiusBar" value="1" min ="1" max="5">
-    </div>
-    </div>
-    <script type=text/javascript src=js/slider.js></script>
-
-    <div id="about">
-      <h1>
-        About
-      </h1>
-      <p>This interactive visualization is part of the <i>Walking Safe</i>
-        capstone project of the discipline IA369 at Unicamp. The task
-        is a proof of concept of one of the modules that may be
-        presented in the capstone.
-      </p>
-    </div>
-    <div id="author">
-      <h1>Author</h1>
-      <dl>
+  </div>
+  <div id="map">
+    <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyDGb4JtBo_ONG3JANojy9tQPObJAipuzbc&callback=myMap"></script>
+  </div>
+  <div>
+    <p>
+      Choose safety radius: <span id = "radiusValue">1Km</span>
+    </p>
+  </div>
+  <div>
+    <input type="range" id="radiusBar" value="1" min ="1" max="5">
+  </div>
+  <script type=text/javascript src=js/slider.js></script>
+  <div id="about">
+    <h1>
+      About
+    </h1>
+    <p>This interactive visualization is part of the <i>Walking Safe</i>
+      capstone project of the discipline IA369 at Unicamp. The task
+      is a proof of concept of one of the modules that may be
+      presented in the capstone.
+    </p>
+  </div>
+  <div id="author">
+    <h1>Author</h1>
+    <dl>
       <dt>Name:</dt>
       <dd>Arthur Zanatta da Costa</dd>
       <dt>RA:</dt>
@@ -76,7 +76,6 @@
       <dt>Contact:</dt>
       <dd>arthurzc23@gmail.com</dd>
     </dl>
-    </div>
-
+  </div>
   </body>
 </html>

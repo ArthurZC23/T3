@@ -1,16 +1,16 @@
 radiusBar.addEventListener('change', function(){
 
   var value = radiusBar.value;
-  document.getElementById("radiusValue").innerHTML = value;
+  document.getElementById("radiusValue").innerHTML = value + "Km";
   updateRadius(safetyCircle, value);
+  dangerLevel = dangerEstimation(safetyCircle.get('center'));
+  style_circle(dangerLevel);
 });
 
 function updateRadius(circle, radius){
+
   circle.set('radius', parseInt(radius * 1000, 10));
 }
-
-
-
 
 function CenterControl(controlDiv, map) {
 
@@ -37,10 +37,8 @@ function CenterControl(controlDiv, map) {
   controlText.innerHTML = 'Center Map';
   controlUI.appendChild(controlText);
 
-
   controlUI.addEventListener('click', function() {
     map.setCenter(sanFrancisco);
     map.setZoom(13)
   });
-
 }
