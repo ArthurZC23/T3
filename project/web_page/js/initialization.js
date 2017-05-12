@@ -16,7 +16,7 @@ function myMap() {
   var latLng = new google.maps.LatLng(sanFrancisco);
   var mapOptions = {
     center: latLng,
-    zoom: 14,
+    zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
@@ -40,7 +40,7 @@ function myMap() {
   fillOpacity: 0.35,
   map: map,
   center: latLng,
-  radius: 100 //Radius is in m
+  radius: 1000 //Radius is in m
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
