@@ -36,11 +36,11 @@ function myMap() {
   strokeColor: '#000000',
   strokeOpacity: 0.5,
   strokeWeight: 0.5,
-  fillColor: '#FF0000',
+  fillColor: '#FFFFFF',
   fillOpacity: 0.35,
   map: map,
   center: latLng,
-  radius: 1 * 1000 //Radius is in Km
+  radius: 100 //Radius is in m
   });
 
   google.maps.event.addListener(map, 'click', function(event) {

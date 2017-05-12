@@ -1,15 +1,17 @@
 radiusBar.addEventListener('change', function(){
 
   var value = radiusBar.value;
-  document.getElementById("radiusValue").innerHTML = value + "Km";
-  updateRadius(safetyCircle, value);
+  var possible_radius = ["100", "250", "500", "750", "1000"];
+  document.getElementById("radiusValue").innerHTML = possible_radius[value - 1];
+  document.getElementById("radiusValue").innerHTML += "m"
+  updateRadius(safetyCircle, possible_radius[value - 1]);
   dangerLevel = dangerEstimation(safetyCircle.get('center'));
   style_circle(dangerLevel);
 });
 
 function updateRadius(circle, radius){
 
-  circle.set('radius', parseInt(radius * 1000, 10));
+  circle.set('radius', parseInt(radius, 10));
 }
 
 function CenterControl(controlDiv, map) {
@@ -23,7 +25,7 @@ function CenterControl(controlDiv, map) {
   controlUI.style.cursor = 'pointer';
   controlUI.style.marginBottom = '22px';
   controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to recenter the map';
+  controlUI.title = 'Click to recenter the map  in SF';
   controlDiv.appendChild(controlUI);
 
   // Set CSS for the control interior.
