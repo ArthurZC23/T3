@@ -6,9 +6,9 @@ for (var i=0; i<crimeLatitudes.length; i++) {
 
   crimeLocations[i] = [crimeLatitudes[i], crimeLongitudes[i]]
 }
-var dangerAudio = new Audio('http://www.fromtexttospeech.com/output/0389577001494548889/23967181.mp3');
-var carefulAudio = new Audio('http://www.fromtexttospeech.com/output/0610628001494549121/23967275.mp3');
-var safeAudio = new Audio('http://www.fromtexttospeech.com/output/0900389001494549030/23967246.mp3');
+var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/danger.mp3");
+var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
+var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
 
 
 function myMap() {
