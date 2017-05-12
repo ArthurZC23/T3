@@ -34,7 +34,7 @@ function CenterControl(controlDiv, map) {
   controlText.style.lineHeight = '38px';
   controlText.style.paddingLeft = '5px';
   controlText.style.paddingRight = '5px';
-  controlText.innerHTML = 'Center Map';
+  controlText.innerHTML = 'Center Map in SF';
   controlUI.appendChild(controlText);
 
   controlUI.addEventListener('click', function() {

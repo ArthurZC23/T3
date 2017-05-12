@@ -10,35 +10,43 @@
   <script type=text/javascript src="js/initialization.js"></script>
 </head>
 <body>
-  <div>
-    <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#safetyZone">Safety Zone</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#author">Author</a></li>
-    </ul>
-  </div>
+    <div class="navigationBar">
+    <a href="#home">Home</a>
+    <a href="#safetyZone">Safety Zone</a>
+    <a href="#about">About</a>
+    <a href="#author">Author</a>
+    </div>
   <div id="home">
   <h1>
-    Welcome to Safety Zone T3
+    Welcome to Safety Zone
   </h1>
   <p>
-    In the final task for the discipline IA369, I build an intercative
+    In the final task (T3) of the discipline IA369, I build an interactive
     visualization for inspecting the safety of the city of San Francisco.
-    The application allows the you to select a point in the map (please
-    choose a point whitin San Francisco) and check if your surrounding
-    is safe.
+    The application allows you to select a point in the map (please
+    choose a point within San Francisco) and check if your surrounding
+    is safe, a place to be careful or dangerous. The danger level is
+    based on crimes that occurred within a given radius of the choosing location
+    in 2016, creating
+    a security radius for him/her. The level of the threat is
+    expressed by the filling color of the circle.
   </p>
   </div>
 
   <div id=safetyZone>
     <h1>Safety zone</h1>
     <h2>How to use it</h2>
-    <p>
-    Select a point in SF by clicking on the map. Set the radius of the safety
-    zone with the slider. Use the button to restore the map into the default
-    view
-    </p>
+    <ul>
+    <li>Just select a point in SF by clicking on the map and the
+    safety zone will be calculated</li>
+    <li>Set the radius of the safety zone with the slider below the map.
+    You can choose among the following distances: 100 m, 250 m, 500 m, 750
+    and 1 km.</li>
+    <li>The application only has SF police incidents at its disposal. Thus, the
+      only realiable results are those within SF borders.</li>
+    <li>In case you step out Ministeredof San Francisco territory, you can press the button
+    to recenter the map in SF</li>
+    </ul>
     <p>Rendering bug: If your browser is rendering white stripes inside
       the circle, press 'Ctrl' + '0'.
     </p>
@@ -60,11 +68,29 @@
     <h1>
       About
     </h1>
+    <h2>
+      Objective
+    </h2>
     <p>This interactive visualization is part of the <i>Walking Safe</i>
-      capstone project of the discipline IA369 at Unicamp. The task
+      capstone project of the discipline IA369 ministered at Unicamp. The task
       is a proof of concept of one of the modules that may be
       presented in the capstone.
     </p>
+    <h2>
+      Data
+    </h2>
+    <p>
+    The <a target="_blank" href="https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki">original data</a>
+    was retrivied from the San Fransicso Police Department Incidents of 2016 in
+    05/08/2017. I want to give a special thanks to the
+    <a target="_blank"href="https://datasf.org/">DataSF</a>
+    website for providing not only this, but also a wide range of open datasets for the public.
+
+   </p>
+   <p>
+    The data is prepared in a Jupyter notebook using Python
+    before being ready to be used by the application.
+  </p>
   </div>
   <div id="author">
     <h1>Author</h1>
