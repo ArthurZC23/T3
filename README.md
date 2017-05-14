@@ -7,7 +7,7 @@ by picking a point in the map, which will serve as center for the safety circle.
 
 ## Report
 
-For additional information about the projec, read the [report](https://github.com/ArthurZC23/T3/blob/master/Report.pdf) file.
+For additional information about the project, read the [report file](https://github.com/ArthurZC23/T3/blob/master/Report.pdf).
 
 ## How to use the webapp
 
