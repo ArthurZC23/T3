@@ -2,8 +2,8 @@
 
 ## Project goal 
 
-Provide a visualization tool for users examine the safety of San Francisco using a safety radius and a web map. Users start 
-by picking a point in the map, which will serve as center for the safety circle. A colored safety radius will be plotted, informing if the region is dangerous, a place to be careful or safe. The information is encoded in the color of the safety zone and in the audio message played when the safety radius is displayed at the map. The user can adjust the radius of the circle, using the linear slider below the map. There are five available options.
+Provides a visualization tool for users to examine the safety of San Francisco using a safety circle and a web map. Users start 
+by picking a point in the map, which will serve as center for the safety circle. A colored safety circle will be plotted, informing if the region is dangerous, a place to be careful or safe. The information is encoded in the filling color of the circle and in the audio message played when the safety radius is displayed at the map. The user can adjust the radius of the circle, using the linear slider below the map. There are five available options.
 
 ## User profile
 
