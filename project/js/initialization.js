@@ -10,7 +10,6 @@ var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/mas
 var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
 var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
 
-
 function myMap() {
 
   var latLng = new google.maps.LatLng(sanFrancisco);
@@ -82,9 +81,10 @@ function style_circle(dangerLevel){
   }
 }
 
+//Compute distance between two points on the map
+//Computation is based on the haversine formula
 function computeDistanceBetween(myLocation, crimeLocation){
 
-//Computation based on the haversine formula
 var R = 6371; // km
 var myLat = myLocation.lat()*(Math.PI/180);
 var crimeLat = crimeLocation[0]*(Math.PI/180);
@@ -97,4 +97,20 @@ var a = Math.sin(latDist/2) * Math.sin(latDist/2) +
 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 var d = R * c;
 return d;
+
+var success = false;
+$.getJSON( "https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/PDI/sfCrimeTourist2016.json", function( data ) {
+  //data is the JSON string
+  success = true;
+  // var items = [];
+  // $.each( data, function( key, val ) {
+  //   items.push( "<li id='" + key + "'>" + val + "</li>" );
+  // });
+  //
+  // $( "<ul/>", {
+  //   "class": "my-new-list",
+  //   html: items.join( "" )
+  // }).appendTo( "body" );
+});
+
 }
