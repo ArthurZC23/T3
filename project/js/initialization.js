@@ -76,12 +76,16 @@ function visualizeCrime(relevantCrimesIdx){
   }
   //Visualize all crimes
   else{
-    //Create Array for D3
+    //Create sorted array for D3
     $.each(crimeType, function(k, v){
       var obj = {}
       obj['CrimeType'] = k
       obj['Number'] = v
       relevantCrimes.push(obj)
+    });
+    //Sorte array based on key 'Number'
+    relevantCrimes.sort(function(a,b){
+      return parseInt(b.Number) - parseInt(a.Number)
     });
     //Visualize
     barChart(relevantCrimes);
@@ -91,11 +95,10 @@ function visualizeCrime(relevantCrimesIdx){
 
 function barChart(relevantCrimes){
 
-  alert('Visualization')
   // set the dimensions of the canvas
   var margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 450 - margin.top - margin.bottom;
 
   // set the ranges
   var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
@@ -142,11 +145,11 @@ function barChart(relevantCrimes){
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "rotate(-90)")
+      .attr("transform", "translate(200,0)")
       .attr("y", 5)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Frequency");
+      .text("Number of cases");
 
 
   // Add bar chart
@@ -158,7 +161,6 @@ function barChart(relevantCrimes){
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.Number); })
       .attr("height", function(d) { return height - y(d.Number); });
-  alert('End Visualization')
 }
 
 
