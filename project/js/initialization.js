@@ -1,11 +1,8 @@
 var map;
 var safetyCircle;
 var sanFrancisco = {lat: 37.773972, lng: -122.431297};
+var crimeData = new Array()
 var crimeLocations = new Array();
-for (var i=0; i<crimeLatitudes.length; i++) {
-
-  crimeLocations[i] = [crimeLatitudes[i], crimeLongitudes[i]]
-}
 var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/danger.mp3");
 var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
 var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
@@ -85,32 +82,30 @@ function style_circle(dangerLevel){
 //Computation is based on the haversine formula
 function computeDistanceBetween(myLocation, crimeLocation){
 
-var R = 6371; // km
-var myLat = myLocation.lat()*(Math.PI/180);
-var crimeLat = crimeLocation[0]*(Math.PI/180);
-var latDist = (crimeLat-myLat);
-var longDist = (crimeLocation[1]-myLocation.lng())*(Math.PI/180);
+  var R = 6371; // km
+  var myLat = myLocation.lat()*(Math.PI/180);
+  var crimeLat = crimeLocation[0]*(Math.PI/180);
+  var latDist = (crimeLat-myLat);
+  var longDist = (crimeLocation[1]-myLocation.lng())*(Math.PI/180);
 
-var a = Math.sin(latDist/2) * Math.sin(latDist/2) +
-        Math.cos(myLat) * Math.cos(crimeLat) *
-        Math.sin(longDist/2) * Math.sin(longDist/2);
-var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-var d = R * c;
-return d;
-
-var success = false;
-$.getJSON( "https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/PDI/sfCrimeTourist2016.json", function( data ) {
-  //data is the JSON string
-  success = true;
-  // var items = [];
-  // $.each( data, function( key, val ) {
-  //   items.push( "<li id='" + key + "'>" + val + "</li>" );
-  // });
-  //
-  // $( "<ul/>", {
-  //   "class": "my-new-list",
-  //   html: items.join( "" )
-  // }).appendTo( "body" );
-});
-
+  var a = Math.sin(latDist/2) * Math.sin(latDist/2) +
+          Math.cos(myLat) * Math.cos(crimeLat) *
+          Math.sin(longDist/2) * Math.sin(longDist/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  return d;
 }
+
+//Get SF crime data
+$.getJSON("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/PDI/sfCrimeTourist2016.json", function(data){
+  //data is the JSON string
+  //alert('success');
+  crimeData = data;
+  var loc;
+  for (var i = 0; i < crimeData.length; i++){
+    loc = data[i].Location;
+    loc = loc.substring(1, loc.length-1);
+    loc = JSON.parse("[" + loc + "]")
+    crimeLocations[i] = [loc[0], loc[1]];
+    }
+});
