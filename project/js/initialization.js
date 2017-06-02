@@ -96,7 +96,7 @@ function visualizeCrime(relevantCrimesIdx){
 function barChart(relevantCrimes){
 
   // set the dimensions of the canvas
-  var margin = {top: 20, right: 20, bottom: 70, left: 40},
+  var margin = {top: 20, right: 20, bottom: 200, left: 40},
     width = 600 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
@@ -116,7 +116,7 @@ function barChart(relevantCrimes){
   // add the SVG element
   var svg = d3.select("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", height + margin.top + margin.bottom + 10)
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
@@ -145,7 +145,7 @@ function barChart(relevantCrimes){
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "translate(200,0)")
+      .attr("transform", "translate(200,-10)")
       .attr("y", 5)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
