@@ -6,6 +6,8 @@ var crimeLocations = new Array();
 var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/danger.mp3");
 var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
 var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
+var crimeType = {}
+
 
 function myMap() {
 
@@ -52,15 +54,114 @@ function myMap() {
 function dangerEstimation(myLocation){
 
   var dangerLevel = 0
+  var relevantCrimesIdx = new Array()
   threshold = safetyCircle.get('radius')/1000
   for(var i = 0; i<crimeLocations.length; i++){
     dist = computeDistanceBetween(myLocation, crimeLocations[i])
     if(dist < threshold){
       dangerLevel += 1
+      relevantCrimesIdx.append(i)
     }
   }
+  //dangerBarChart(relevantCrimesIdx)
   return dangerLevel
 }
+
+function visualizeCrime(relevantCrimesIdx){
+
+  var relevantCrimes = new Array();
+  //Filter crimes
+  if (relevantCrimesIdx){
+
+  }
+  //Visualize all crimes
+  else{
+    //Create Array for D3
+    $.each(crimeType, function(k, v){
+      var obj = {}
+      obj['CrimeType'] = k
+      obj['Number'] = v
+      relevantCrimes.push(obj)
+    });
+    //Visualize
+    barChart(relevantCrimes);
+
+  }
+}
+
+function barChart(relevantCrimes){
+
+  alert('Visualization')
+  // set the dimensions of the canvas
+  var margin = {top: 20, right: 20, bottom: 70, left: 40},
+    width = 600 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+  // set the ranges
+  var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+  var y = d3.scale.linear().range([height, 0]);
+
+  // define the axis
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+  // add the SVG element
+  var svg = d3.select("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+  relevantCrimes.forEach(function(d) {
+    d.CrimeType = d.CrimeType;
+    d.Number = +d.Number;
+  });
+
+  // scale the range of the data
+  x.domain(relevantCrimes.map(function(d) { return d.CrimeType; }));
+  y.domain([0, d3.max(relevantCrimes, function(d) { return d.Number; })]);
+
+  // add axis
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 5)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Frequency");
+
+
+  // Add bar chart
+  svg.selectAll("bar")
+      .data(relevantCrimes)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.CrimeType); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Number); })
+      .attr("height", function(d) { return height - y(d.Number); });
+  alert('End Visualization')
+}
+
+
 
 function style_circle(dangerLevel){
 
@@ -103,9 +204,18 @@ $.getJSON("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/P
   crimeData = data;
   var loc;
   for (var i = 0; i < crimeData.length; i++){
-    loc = data[i].Location;
+    //Get crime location
+    loc = crimeData[i].Location;
     loc = loc.substring(1, loc.length-1);
-    loc = JSON.parse("[" + loc + "]")
+    loc = JSON.parse("[" + loc + "]");
     crimeLocations[i] = [loc[0], loc[1]];
+    //Count crime types
+    if (!(crimeData[i].Category in crimeType)){
+      crimeType[crimeData[i].Category] = 1;
     }
+    else{
+      crimeType[data[i].Category] += 1;
+    }
+  }
+  visualizeCrime(null);
 });

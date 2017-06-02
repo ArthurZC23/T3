@@ -5,11 +5,10 @@
   <meta charset="utf-8"></meta>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
   <link rel="stylesheet" href="css/style.css"></link>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
   <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
   </script>
-  <!-- <script type=text/javascript src="js/crimeLatitudes.js"></script>
-  <script type=text/javascript src="js/crimeLongitudes.js"></script> -->
   <script type=text/javascript src="js/initialization.js"></script>
 </head>
 <body>
@@ -66,6 +65,12 @@
     <input type="range" id="radiusBar" value="5" min ="1" max="5">
   </div>
   <script type=text/javascript src=js/slider.js></script>
+
+
+  <svg class="chart">
+  </svg>
+
+  
   <div id="about">
     <h1>
       About
