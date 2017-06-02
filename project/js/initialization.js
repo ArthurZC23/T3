@@ -78,13 +78,11 @@ function visualizeCrime(relevantCrimesIdx){
     for (idx in relevantCrimesIdx){
       if (!(crimeData[idx].Category in filteredCrimeType)){
         filteredCrimeType[crimeData[idx].Category] = 1;
-        //console.log(filteredCrimeType)
       }
       else{
         filteredCrimeType[crimeData[idx].Category] += 1;
       }
     }
-
     //Create sorted array for D3
     $.each(filteredCrimeType, function(k, v){
       var obj = {}
@@ -92,12 +90,6 @@ function visualizeCrime(relevantCrimesIdx){
       obj['Number'] = v
       relevantCrimes.push(obj)
       });
-      //Sorte array based on key 'Number'
-      relevantCrimes.sort(function(a,b){
-        return parseInt(b.Number) - parseInt(a.Number)
-      });
-      //Visualize
-      barChart(relevantCrimes);
     }
   //Visualize all crimes
   else{
@@ -108,14 +100,13 @@ function visualizeCrime(relevantCrimesIdx){
       obj['Number'] = v
       relevantCrimes.push(obj)
     });
-    //Sorte array based on key 'Number'
-    relevantCrimes.sort(function(a,b){
-      return parseInt(b.Number) - parseInt(a.Number)
-    });
-    //Visualize
-    barChart(relevantCrimes);
-
   }
+  //Sorte array based on key 'Number'
+  relevantCrimes.sort(function(a,b){
+    return parseInt(b.Number) - parseInt(a.Number)
+  });
+  //Visualize
+  barChart(relevantCrimes);
 }
 
 function barChart(relevantCrimes){
@@ -171,14 +162,16 @@ function barChart(relevantCrimes){
 
   svg.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "translate(200,0)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Number of cases");
+      .call(yAxis);
 
+  svg.append("text")
+      .attr("class","title")
+      .attr("x", (width/ 2))
+      .attr("y", 20)
+      .attr("text-anchor", "middle")
+      .style("font-size", "16px")
+      .style("text-decoration", "underline")
+      .text("Number of registered incidents in 2016.");
 
   // Add bar chart
   svg.selectAll("bar")
