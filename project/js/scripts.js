@@ -7,7 +7,7 @@ var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/mas
 var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
 var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
 var crimeType = {};
-var relevantCrimesIdx = new Array();
+var relevantCrimesIdx;
 var relevantCrimes;
 
 function myMap() {
@@ -55,7 +55,7 @@ function myMap() {
 function dangerEstimation(myLocation){
 
   var dangerLevel = 0
-
+  relevantCrimesIdx = new Array();
   threshold = safetyCircle.get('radius')/1000
   for(var i = 0; i<crimeLocations.length; i++){
     dist = computeDistanceBetween(myLocation, crimeLocations[i])
