@@ -6,8 +6,9 @@ var crimeLocations = new Array();
 var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/danger.mp3");
 var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
 var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
-var crimeType = {}
-
+var crimeType = {};
+var relevantCrimesIdx = new Array();
+var relevantCrimes;
 
 function myMap() {
 
@@ -54,26 +55,50 @@ function myMap() {
 function dangerEstimation(myLocation){
 
   var dangerLevel = 0
-  var relevantCrimesIdx = new Array()
+
   threshold = safetyCircle.get('radius')/1000
   for(var i = 0; i<crimeLocations.length; i++){
     dist = computeDistanceBetween(myLocation, crimeLocations[i])
     if(dist < threshold){
       dangerLevel += 1
-      relevantCrimesIdx.append(i)
+      relevantCrimesIdx.push(i)
     }
   }
-  //dangerBarChart(relevantCrimesIdx)
+  visualizeCrime(relevantCrimesIdx)
   return dangerLevel
 }
 
 function visualizeCrime(relevantCrimesIdx){
 
-  var relevantCrimes = new Array();
-  //Filter crimes
-  if (relevantCrimesIdx){
+  relevantCrimes = new Array();
 
-  }
+  //Filtered crimes
+  if (relevantCrimesIdx){
+    filteredCrimeType = {};
+    for (idx in relevantCrimesIdx){
+      if (!(crimeData[idx].Category in filteredCrimeType)){
+        filteredCrimeType[crimeData[idx].Category] = 1;
+        //console.log(filteredCrimeType)
+      }
+      else{
+        filteredCrimeType[crimeData[idx].Category] += 1;
+      }
+    }
+
+    //Create sorted array for D3
+    $.each(filteredCrimeType, function(k, v){
+      var obj = {}
+      obj['CrimeType'] = k
+      obj['Number'] = v
+      relevantCrimes.push(obj)
+      });
+      //Sorte array based on key 'Number'
+      relevantCrimes.sort(function(a,b){
+        return parseInt(b.Number) - parseInt(a.Number)
+      });
+      //Visualize
+      barChart(relevantCrimes);
+    }
   //Visualize all crimes
   else{
     //Create sorted array for D3
@@ -95,6 +120,9 @@ function visualizeCrime(relevantCrimesIdx){
 
 function barChart(relevantCrimes){
 
+  //Remove previous plot and add new one
+  d3.select("svg > *")
+    .remove()
   // set the dimensions of the canvas
   var margin = {top: 20, right: 20, bottom: 200, left: 40},
     width = 600 - margin.left - margin.right,
@@ -116,7 +144,7 @@ function barChart(relevantCrimes){
   // add the SVG element
   var svg = d3.select("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom + 10)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
@@ -145,7 +173,7 @@ function barChart(relevantCrimes){
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "translate(200,-10)")
+      .attr("transform", "translate(200,0)")
       .attr("y", 5)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
